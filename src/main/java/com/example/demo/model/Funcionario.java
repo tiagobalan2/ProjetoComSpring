@@ -7,16 +7,15 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Funcionario {
+public class Funcionario extends Pessoa{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
 
-    @NotNull(message = "Campo cpf não pode ser nulo.")
-    @Column(nullable = false)
-    @Size(min = 11, max = 14)
-    private String cpf;
+    //@NotNull(message = "Campo cpf não pode ser nulo.")
+    //@Column(nullable = false)
+    //@Size(min = 11, max = 14)
+    //private String cpf;
     @NotNull
     @Column(nullable = false)
     @Min(value = 1)
@@ -25,9 +24,20 @@ public class Funcionario {
     public Funcionario() {
     }
 
-    public Funcionario(String nome, String cpf, double salario) {
-        this.nome = nome;
-        this.cpf = cpf;
+    public Funcionario(Long id, double salario) {
+        this.id = id;
+        this.salario = salario;
+    }
+
+    public Funcionario(String nome, String cpf, String idade, Long id, double salario) {
+        super(nome, cpf, idade);
+        this.id = id;
+        this.salario = salario;
+    }
+
+    public Funcionario(String cpf, String idade, Long id, String nome, double salario) {
+        super(nome, cpf, idade);
+        this.id = id;
         this.salario = salario;
     }
 
@@ -39,21 +49,6 @@ public class Funcionario {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
     public double getSalario() {
         return salario;
