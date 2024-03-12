@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.websocket.ClientEndpoint;
@@ -16,8 +18,9 @@ public class Veiculo {
     @Column(nullable = false)
     private String marca;
     private String cor;
-    @NotNull(message = "Valor do veiculo deve ser definido previamente")
+
     @Column(nullable = false)
+    @DecimalMin(value = "0.1")
     private double preco;
     @NotNull(message = "Campo ano não pode ser nulo.")
     @Column(nullable = false)

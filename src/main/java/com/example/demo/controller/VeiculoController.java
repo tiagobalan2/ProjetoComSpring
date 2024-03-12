@@ -42,7 +42,7 @@ public class VeiculoController {
         return veiculoService.criar(veiculo);
     }
 
-    @PutMapping("/{id")
+    @PutMapping("/{id}")
     //PUT
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Veiculo veiculo) {
         if(veiculoService.atualizar(id, veiculo) == null) {
